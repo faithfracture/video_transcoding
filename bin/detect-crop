@@ -14,10 +14,10 @@ module VideoTranscoding
     include CLI
 
     def about
-      <<HERE
-detect-crop #{VERSION}
-#{COPYRIGHT}
-HERE
+      <<~HERE
+        detect-crop #{VERSION}
+        #{COPYRIGHT}
+      HERE
     end
 
     def usage

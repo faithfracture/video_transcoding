@@ -7,10 +7,10 @@ Gem::Specification.new do |s|
   s.version               = VideoTranscoding::VERSION
   s.required_ruby_version = '>= 2.0'
   s.summary               = 'Tools to transcode, inspect and convert videos.'
-  s.description           = <<-HERE
-    Video Transcoding is a package of tools to transcode, inspect
-    and convert videos.
-  HERE
+  s.description           = <<~HERE
+      Video Transcoding is a package of tools to transcode, inspect
+      and convert videos.
+    HERE
   s.license               = 'MIT'
   s.author                = 'Don Melton'
   s.email                 = 'don@blivet.com'

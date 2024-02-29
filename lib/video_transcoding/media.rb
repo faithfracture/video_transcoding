@@ -4,6 +4,8 @@
 # Copyright (c) 2013-2020 Don Melton
 #
 
+require "video_transcoding/languagemap"
+
 module VideoTranscoding
   class Media
     attr_reader :path
@@ -102,7 +104,7 @@ module VideoTranscoding
       @info[:subtitle]  = {}
 
       audio.gsub(/\r/, '').each_line do |line|
-        if line =~ /^    \+ ([0-9]+), [^(]+\(([^)]+)\) .*\(([0-9.]+) ch\) .*\(iso639-2: ([a-z]{3})\)/
+        if line =~ /^\s*\+\s*(\d+),\s*[^(]+\(([^,]+),\s*([0-9.]+).*\).*?\(iso639-2:\s*([a-z]{3})\)/
           track                 = $1.to_i
           track_info            = {}
           track_info[:format]   = $2
@@ -127,12 +129,12 @@ module VideoTranscoding
           track_info[:format]     = $3
           track_info[:encoding]   = $4
           @info[:subtitle][track] = track_info
-        elsif line =~ /^    \+ ([0-9]+), .*\[(.*)\]/
+        elsif line =~ /^\s*\+\s*([0-9]+),\s*(\w*).*\((.*)\)/
           track                   = $1.to_i
           track_info              = {}
-          track_info[:language]   = 'und'
-          track_info[:format]     = ($2 == 'PGS' or $2 == 'VOBSUB') ? 'Bitmap' : 'Text'
-          track_info[:encoding]   = $2
+          track_info[:language]   = $language_map.fetch($2.strip, 'und')
+          track_info[:format]     = ($3 == 'PGS' or $2 == 'VOBSUB') ? 'Bitmap' : 'Text'
+          track_info[:encoding]   = $3
           @info[:subtitle][track] = track_info
         end
       end

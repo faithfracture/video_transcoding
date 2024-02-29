@@ -15,38 +15,38 @@ module VideoTranscoding
     include CLI
 
     def about
-      <<HERE
-query-handbrake-log #{VERSION}
-#{COPYRIGHT}
-HERE
+      <<~HERE
+        query-handbrake-log #{VERSION}
+        #{COPYRIGHT}
+      HERE
     end
 
     def usage
-      <<HERE
-Report information from HandBrake-generated `.log` files.
+      <<~HERE
+        Report information from HandBrake-generated `.log` files.
 
-Usage: #{$PROGRAM_NAME} INFO [OPTION]... [FILE|DIRECTORY]...
+        Usage: #{$PROGRAM_NAME} INFO [OPTION]... [FILE|DIRECTORY]...
 
-Information types:
-t,  time            time spent during transcoding
-                      (sorted from short to long)
-s,  speed           speed of transcoding in frames per second
-                      (sorted from fast to slow)
-b,  bitrate         video bitrate of transcoded output
-                      (sorted from low to high)
-r,  ratefactor      average P-frame quantizer for transcoding
-                      (sorted from low to high)
+        Information types:
+        t,  time            time spent during transcoding
+                              (sorted from short to long)
+        s,  speed           speed of transcoding in frames per second
+                              (sorted from fast to slow)
+        b,  bitrate         video bitrate of transcoded output
+                              (sorted from low to high)
+        r,  ratefactor      average P-frame quantizer for transcoding
+                              (sorted from low to high)
 
-Options:
-    --reverse       reverse direction of sort
-    --tabular       use tab character as field delimiter and suppress labels
+        Options:
+            --reverse       reverse direction of sort
+            --tabular       use tab character as field delimiter and suppress labels
 
--v, --verbose       increase diagnostic information
--q, --quiet         decrease     "           "
+        -v, --verbose       increase diagnostic information
+        -q, --quiet         decrease     "           "
 
--h, --help          display this help and exit
-    --version       output version information and exit
-HERE
+        -h, --help          display this help and exit
+            --version       output version information and exit
+      HERE
     end
 
     def initialize

@@ -14,37 +14,37 @@ module VideoTranscoding
     include CLI
 
     def about
-      <<HERE
-convert-video #{VERSION}
-#{COPYRIGHT}
-HERE
+      <<~HERE
+        convert-video #{VERSION}
+        #{COPYRIGHT}
+      HERE
     end
 
     def usage
-      <<HERE
-Convert video file from Matroska to MP4 format or from MP4 to Matroksa format
-WITHOUT TRANSCODING VIDEO.
+      <<~HERE
+        Convert video file from Matroska to MP4 format or from MP4 to Matroksa format
+        WITHOUT TRANSCODING VIDEO.
 
-Usage: #{$PROGRAM_NAME} [OPTION]... [FILE]...
+        Usage: #{$PROGRAM_NAME} [OPTION]... [FILE]...
 
--o, --output DIRECTORY
-                    set output path
-                      (default: input filename with output format extension
-                        in current working directory)
-    --use-m4v       use `.m4v` extension instead of `.mp4` for MP4 output
-    --no-double     don't swap order of first two audio tracks
-                      or add stereo copy of main surround track
-    --ac3-encoder ac3|eac3
-                    set AC-3 audio encoder (default: ac3)
+        -o, --output DIRECTORY
+                            set output path
+                              (default: input filename with output format extension
+                                in current working directory)
+            --use-m4v       use `.m4v` extension instead of `.mp4` for MP4 output
+            --no-double     don't swap order of first two audio tracks
+                              or add stereo copy of main surround track
+            --ac3-encoder ac3|eac3
+                            set AC-3 audio encoder (default: ac3)
 
--v, --verbose       increase diagnostic information
--q, --quiet         decrease     "           "
+        -v, --verbose       increase diagnostic information
+        -q, --quiet         decrease     "           "
 
--h, --help          display this help and exit
-    --version       output version information and exit
+        -h, --help          display this help and exit
+            --version       output version information and exit
 
-Requires `HandBrakeCLI`, `mp4track`, `ffmpeg` and `mkvpropedit`.
-HERE
+        Requires `HandBrakeCLI`, `mp4track`, `ffmpeg` and `mkvpropedit`.
+      HERE
     end
 
     def initialize
